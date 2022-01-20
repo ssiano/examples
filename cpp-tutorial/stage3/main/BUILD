@@ -1,4 +1,5 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("//aspects:file_count.bzl", "file_count_rule")
 
 cc_library(
     name = "hello-greet",
@@ -13,4 +14,10 @@ cc_binary(
         ":hello-greet",
         "//lib:hello-time",
     ],
+)
+
+file_count_rule(
+    name = 'file_count',
+    deps = ['hello-world'],
+    extension = '*',
 )
